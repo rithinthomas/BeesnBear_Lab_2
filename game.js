@@ -7,7 +7,8 @@ function Bear() {
     this.x = this.htmlElement.offsetLeft;
     this.y = this.htmlElement.offsetTop;
 
-    this.move = function(xDir, yDir) {    
+    this.move = function(xDir, yDir) { 
+        this.dBear = setSpeed();   
         this.x += this.dBear * xDir;
         this.y += this.dBear * yDir;
         this.display(); 
@@ -79,7 +80,7 @@ function start(){
 
 } 
 
-function setspeed(){
+function setSpeed(){
     bear.dBear = parseInt(document.getElementById("speedBear").value);
 }
 
@@ -210,15 +211,14 @@ function updateBees() { // update loop for game
 }
 
 function addbees(){
-    let i = 1;
-    let n = nbBees + 1;
-    var bee = new Bee(n);
+    let nbBees = document.getElementById("nbBees").value;
+    var bee = new Bee(nbBees);
+    nbBees++;
 
     bee.display();
     bees.push(bee);
 
-    i++
-    document.getElementById("nbBees").value = i;
+    document.getElementById("nbBees").value = nbBees;
 }
 
 function isHit(defender, offender) {
